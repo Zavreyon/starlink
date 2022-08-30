@@ -51,3 +51,14 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: blackbox:9115
+
+- job_name: 'node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+remote_write:
+  - url: <Given by Grafana.net>
+    basic_auth:
+      username: <Given by Grafana.net>
+      password: <Given by Grafana.net>
