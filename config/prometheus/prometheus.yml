@@ -23,36 +23,27 @@ scrape_configs:
     params:
       module: [icmp_ipv4]
     static_configs:
-      - targets: [ 'qosping-aws-us-west-1.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_us_west'
-      - targets: [ 'qosping-aws-us-east-1.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_us_east'
-      - targets: [ 'qosping-aws-eu-west-3.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_eu-west'
-      - targets: [ 'qosping-aws-ap-southeast-2.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_ap-southeast'
-      - targets: [ 'qosping-aws-sa-east-1.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_sa-east'
-      - targets: [ 'qosping-aws-ap-northeast-1.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_ap-northeast'
-      - targets: [ 'qosping-aws-me-south-1.ol.epicgames.com' ]
-        labels:
-          name: 'epicgames_me-south'
       - targets: [ '8.8.8.8' ]
         labels:
-          name: 'google_a'
-      - targets: [ '8.8.4.4' ]
-        labels:
-          name: 'google_b'
+          name: 'Google'
       - targets: [ '1.1.1.1' ]
         labels:
-          name: 'cloudflare'
+          name: 'Cloudflare'
+      - targets: [ '4.2.2.2' ]
+        labels:
+          name: 'Level 3'
+      - targets: [ 'ec2.us-east-1.amazonaws.com' ]
+        labels:
+          name: 'AWS East 1'
+      - targets: [ 'ec2.us-west-2.amazonaws.com' ]
+        labels:
+          name: 'AWS West 2'
+      - targets: [ 'core1.dal2.he.net' ]
+        labels:
+          name: 'HE Dallas'
+      - targets: [ 'core2.tor1.he.net' ]
+        labels:
+          name: 'HE Toronto'
     relabel_configs:
       - source_labels: [ __address__ ]
         target_label: __param_target
