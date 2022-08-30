@@ -62,3 +62,7 @@ remote_write:
     basic_auth:
       username: <Given by Grafana.net>
       password: <Given by Grafana.net>
+    write_relabel_configs:
+    - source_labels: [__name__]
+      regex: starlink.*|speedtest.*|probe.*|node_hwmon_temp_celsius|node_hwmon_temp_celsius|node_cpu_seconds_total|node_disk_io_time_seconds_total|node_memory_Buffers_bytes|node_memory_Cached_bytes|node_memory_MemFree_bytes||node_memory_MemTotal_bytes|node_memory_SReclaimable_bytes
+      action: keep
