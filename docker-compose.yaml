@@ -37,19 +37,35 @@ services:
         source: ./data/prometheus
         target: /prometheus
 
-  grafana:
-    image: "ghcr.io/danopstech/grafana:latest"
+#  grafana:
+#    image: "ghcr.io/danopstech/grafana:latest"
+#    restart: always
+#    user: "root"
+#    ports:
+#      - "3000:3000"
+#    environment:
+#      - GF_INSTALL_PLUGINS=ae3e-plotly-panel
+#      - GF_LOG_CONSOLE_LEVEL=warn
+#    volumes:
+#      - type: bind
+#        source: ./data/grafana
+#        target: /var/lib/grafana
+#      - type: bind
+#        source: ./config/grafana/provisioning
+#        target: /etc/grafana/provisioning/
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
     restart: always
-    user: "root"
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_INSTALL_PLUGINS=ae3e-plotly-panel
-      - GF_LOG_CONSOLE_LEVEL=warn
     volumes:
-      - type: bind
-        source: ./data/grafana
-        target: /var/lib/grafana
-      - type: bind
-        source: ./config/grafana/provisioning
-        target: /etc/grafana/provisioning/
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - "9100:9100"
