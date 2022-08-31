@@ -1,4 +1,6 @@
 global:
+  external_labels:
+    origin_prometheus: <unit name/number>
   scrape_interval:     1m
   evaluation_interval: 1m
   scrape_timeout:      10s
@@ -11,8 +13,8 @@ scrape_configs:
       - targets: ['starlink_exporter:9817']
 
   - job_name: 'speedtest'
-    scrape_interval: 60m
-    scrape_timeout: 70s
+    scrape_interval: 30m
+    scrape_timeout: 120s
     static_configs:
       - targets: [ 'speedtest_exporter:9090' ]
 
