@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   starlink_exporter:
-    image: "ghcr.io/danopstech/starlink_exporter:latest"
+    image: "sysdigdan/starlink_exporter:latest"
     restart: always
     ports:
       - "9817:9817"
